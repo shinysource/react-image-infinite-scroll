@@ -1,70 +1,38 @@
-# Getting Started with Create React App
+# Pagination & Infinite Scroll in React
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+[Link to associated blog post](https://rajrajhans.com/2021/04/pagination-and-infinite-scroll-in-react//)
 
-## Available Scripts
+This is a demo React app that simply calls the Unsplash API to get random images, 15 at a time, and displays them.
 
-In the project directory, you can run:
+When you have to to present large number of data records in your React app, you have two options:
 
-### `npm start`
+| Pagination                                      | Infinite Scroll                                      |
+| ----------------------------------------------- | ---------------------------------------------------- |
+| ![](/docs/unsplash_react_pagination_record.gif) | ![](/docs/unsplash_react_infinite_scroll_record.gif) |
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Pagination
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+You can either have **pagination**, which means that you'll display certain number of records on a screen on one page, and then the user has to click on a button to load the next set of data.
 
-### `npm test`
+You can find the implementation of Pagination at [`src/PaginationApp.js`](src/PaginationApp.js).
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Visit [this link](https://react-infinite-scroll-demo-hy4y6j8wt-rajrajhans.vercel.app/) for a live demo of pagination.
 
-### `npm run build`
+## Infinite Scroll
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The second option is to use **infinite scroll**, which means that the user just has to scroll, and it will automatically display the next set of data as the user scrolls further down, similar to how Twitter or Facebook feeds work. It's a much better experience rather than the user having to click on a button every time they want to load next page's data.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+There are two ways we can implement Infinite Scroll:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. **Using Scroll Events Listener**: We will listen to DOM Scroll Events emitted and then see if we have reached bottom. If yes, we'll trigger the request. Pretty straight forward. Using scroll events works, but it might cause performance issues in your app because the scroll events listener code runs on the main thread.
+2. **Using Intersection Observer**: This one is a relatively new approach. Intersection Observer API lets our code register a callback function that is executed whenever an element they wish to monitor enters or exits another element. This way, our webapp no longer needs to do anything on the main thread to watch for this kind of element intersection, which makes it more performant.
 
-### `npm run eject`
+You can find the implementations of Infinite scroll using both Scroll Events Listener and Intersection Observer at [`src/ InfiniteScrollApp.js`](src/InfiniteScrollApp.js) and [`src/InfiniteScrollIntersectionObserverApp.js`](src/InfiniteScrollIntersectionObserverApp.js) respectively.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Visit [this link](https://react-infinite-scroll-demo-9o91prgax-rajrajhans.vercel.app/) for a live demo of infinite scroll.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Do check out the [blog post](https://rajrajhans.com/2021/04/pagination-and-infinite-scroll-in-react/) for more details.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+**Note**: To run the project locally, you need to create a free account and get an API key from [Unsplash](https://unsplash.com/developers) and enter it in the `.env` file. If you want to check how the JSON response from Unsplash looks like, you can find a sample at `src/sample_api_response.json`.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Cheers!
