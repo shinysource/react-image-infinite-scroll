@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 .image {
-  @apply mt-2 w-full;
+  @apply mt-2 w-full lg:w-1/4;
 }
 
 .image-grid {
-  @apply flex flex-wrap justify-center;
+  @apply grid grid-cols-4;
 }
