@@ -9,7 +9,7 @@ const createAxiosInstance = (baseURL) => {
   });
   instance.interceptors.request.use((config) => {
     config.headers = {
-      Authorization: `CLIENT-ID ${unspalshApiKey}`,
+      Authorization: `Client-ID ${unspalshApiKey}`,
     };
     return config;
   });
